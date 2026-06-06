@@ -17,6 +17,7 @@ namespace BulletPack
             var bulletPrefab = GameManager.GetPrefab<BulletEntity>(PrefabNames.BulletEntity);
             var spawnedBullet = Instantiate(bulletPrefab, position, Quaternion.identity);
             spawnedBullet._moveVector = new Vector3(direction * spawnedBullet.bulletSpeed, 0);
+            spawnedBullet.bulletSprite.color = bulletColor;
         }
 
         private void Update()
@@ -26,7 +27,6 @@ namespace BulletPack
 
         public void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("HIT");
             if (other.TryGetComponent(out WindowEntity window))
             {
                 window.DirtyUp();

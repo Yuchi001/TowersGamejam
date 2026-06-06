@@ -14,6 +14,7 @@ namespace PlayerPack
         [SerializeField] private float windowOffset;
         [SerializeField] private int playerID;
         [SerializeField] private Color playerColor;
+        [SerializeField] private Transform bulletSpawnPos;
         
         [Header("Input Actions")]
         [SerializeField] private InputActionReference moveUpAction;
@@ -59,7 +60,7 @@ namespace PlayerPack
 
         private void OnAttack(InputAction.CallbackContext context)
         {
-            BulletEntity.SpawnBullet(transform.position, playerColor, playerID == 0 ? 1 : -1);
+            BulletEntity.SpawnBullet(bulletSpawnPos.position, playerColor, playerID == 0 ? 1 : -1);
         }
 
         private void OnClean(InputAction.CallbackContext context)

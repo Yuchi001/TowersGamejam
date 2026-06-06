@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8347572674640105234}
   - component: {fileID: -4979506521138799914}
   - component: {fileID: 4215095410173136235}
-  - component: {fileID: 5056452011654422980}
   m_Layer: 5
   m_Name: DamageIndicatorHolder
   m_TagString: Untagged
@@ -69,18 +68,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3205396376673001242}
   m_CullTransparentMesh: 1
---- !u!210 &5056452011654422980
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3205396376673001242}
-  m_Enabled: 1
-  m_SortingLayerID: 2057583649
-  m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_SortAtRoot: 0
 --- !u!1 &8195603558983687890
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +80,7 @@ GameObject:
   - component: {fileID: 7945272933442929783}
   - component: {fileID: 7319459588858352294}
   - component: {fileID: 835276002159567535}
+  - component: {fileID: 4893713614873142297}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -237,3 +225,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!210 &4893713614873142297
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8195603558983687890}
+  m_Enabled: 1
+  m_SortingLayerID: -1282081545
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_SortAtRoot: 0

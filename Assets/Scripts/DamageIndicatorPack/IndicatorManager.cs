@@ -63,7 +63,7 @@ namespace DamageIndicatorPack
             var sb = new StringBuilder("<sprite name=\"");
             sb.Append(indicatorText.ToString().ToLower());
             sb.Append("\">");
-            Instance._pool.Get().Setup(position, sb.ToString(), Color.white, DamageIndicator.EFontSize.SMALL);
+            Instance._pool.Get().Setup(position, sb.ToString(), Color.white);
         }
 
         public static void SpawnIndicator(Vector2 position, string text, Color color, DamageIndicator.EFontSize fontSize)
