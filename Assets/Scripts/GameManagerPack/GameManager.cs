@@ -12,7 +12,7 @@ namespace GameManagerPack
 
         public static Volume Volume => Instance.volume;
         
-        private readonly Dictionary<string, GameObject> _prefabs = new();
+        private Dictionary<string, GameObject> _prefabs = new();
         public static bool HasInstance() => Instance != null;
 
         private static GameManager Instance { get; set; }
@@ -29,6 +29,13 @@ namespace GameManagerPack
         {
             if (Instance != this && Instance != null) Destroy(gameObject);
             else Instance = this;
+
+            _prefabs.Clear();
+            var prefabs = Resources.LoadAll<GameObject>("Prefabs");
+            foreach (var prefab in prefabs) _prefabs.Add(prefab.name, prefab);
+            
+            var managers = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IMainManager>();
+            foreach (var mainManager in managers) mainManager.Init();
         }
        
         public static void PauseGame(object obj)

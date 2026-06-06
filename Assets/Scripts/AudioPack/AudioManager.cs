@@ -8,7 +8,7 @@ using UnityEngine.Pool;
 
 namespace AudioPack
 {
-    public class AudioManager : PoolManager
+    public class AudioManager : PoolManager, IMainManager
     {
         [SerializeField] private float minSFXInterval = 0.5f;
         [SerializeField] private List<SoundData> sounds = new();
@@ -23,7 +23,7 @@ namespace AudioPack
 
         private static AudioManager Instance { get; set; }
 
-        private void Awake()
+        public void Init()
         {
             if (Instance != this && Instance != null) Destroy(gameObject);
             else Instance = this;
