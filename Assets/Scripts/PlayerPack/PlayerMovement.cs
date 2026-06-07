@@ -21,6 +21,7 @@ namespace PlayerPack
         [SerializeField] private float stackRefreshRate;
         [SerializeField] private TextMeshProUGUI attackStackField;
         [SerializeField] private LineRenderer lineRenderer;
+        [SerializeField] private Animator animator;
         
         [Header("Input Actions")]
         [SerializeField] private InputActionReference moveUpAction;
@@ -82,11 +83,13 @@ namespace PlayerPack
             _currentAttackCount--;
             attackStackField.text = $"Paint: {_currentAttackCount}/{attackStackCount}";
             BulletEntity.SpawnBullet(bulletSpawnPos.position, playerColor, playerID == 0 ? 1 : -1);
+            animator.SetTrigger("throw");
         }
 
         private void OnClean(InputAction.CallbackContext context)
         {
             WindowManager.CleanWindow(playerID);
+            animator.SetTrigger("clean");
         }
 
         private void Update()
