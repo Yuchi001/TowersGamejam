@@ -13,5 +13,9 @@ namespace AudioPack
     Clock8Sec = 9,
     Win = 10,
     cleanOrDie = 11,
+    timesUp = 12,
+    morebolets = 13,
+    speedpower_low = 14,
+    goldensponge = 15,
     }
 }

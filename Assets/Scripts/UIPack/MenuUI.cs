@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using AudioPack;
 using GameManagerPack;
 using UIPack.Elements;
@@ -19,7 +20,13 @@ namespace UIPack
             var buttonSection = new NavigationSection(this, buttons, NavigationSection.ENavigationOrientation.VERTICAL, NavigationSection.ENavigationOrientation.VERTICAL);
             NavigationManager = new NavigationManager(buttonSection);
             base.OnOpen(key);
-            
+
+            StartCoroutine(DelegateMenuSound());
+        }
+
+        private IEnumerator DelegateMenuSound()
+        {
+            yield return new WaitForSeconds(0.5f);
             AudioManager.PlaySound(ESoundType.cleanOrDie);
         }
 
