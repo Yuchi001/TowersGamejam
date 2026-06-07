@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using AudioPack;
 using UnityEngine;
 using UnityEngine.Rendering;
 using MonoBehaviour = UnityEngine.MonoBehaviour;
@@ -36,6 +37,14 @@ namespace GameManagerPack
             
             var managers = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IMainManager>();
             foreach (var mainManager in managers) mainManager.Init();
+            
+            StartGame();
+        }
+
+        public static void StartGame()
+        {
+            AudioManager.SetTheme(ESoundType.MainTheme);
+            
         }
        
         public static void PauseGame(object obj)

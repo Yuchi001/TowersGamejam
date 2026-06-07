@@ -1,4 +1,5 @@
 ﻿using System;
+using AudioPack;
 using GameManagerPack;
 using UnityEngine;
 using WindowPack;
@@ -8,6 +9,7 @@ namespace BulletPack
     public class BulletEntity : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer bulletSprite;
+        [SerializeField] private ParticleSystem particleSystem;
         [SerializeField] private float bulletSpeed;
 
         private Vector3 _moveVector;
@@ -18,11 +20,14 @@ namespace BulletPack
             var spawnedBullet = Instantiate(bulletPrefab, position, Quaternion.identity);
             spawnedBullet._moveVector = new Vector3(direction * spawnedBullet.bulletSpeed, 0);
             spawnedBullet.bulletSprite.color = bulletColor;
+            var main = spawnedBullet.particleSystem.main;
+            main.startColor = bulletColor * Color.gray;
         }
 
         private void Update()
         {
             transform.position += _moveVector * Time.deltaTime;
+            _moveVector -= _moveVector / 2f * Time.deltaTime;
         }
 
         public void OnTriggerEnter2D(Collider2D other)
@@ -30,6 +35,7 @@ namespace BulletPack
             if (other.TryGetComponent(out WindowEntity window))
             {
                 window.DirtyUp();
+                AudioManager.PlaySound(ESoundType.cartoonsplash);
                 Destroy(gameObject);
             }
         }

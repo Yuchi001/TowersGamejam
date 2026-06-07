@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0.6957383, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0601a6e2ab401f04496ca9bbfce890b0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.875, y: 0.75}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -157,8 +157,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.40251565, g: 0.23867041, b: 0.18606852, a: 1}
+  m_Sprite: {fileID: 21300000, guid: fb0dced3a7e5fdf48a84c6794218f087, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dirtySpriteRenderer: {fileID: 6751067231279396660}
+  spriteRenderer: {fileID: 7866128973362083105}
   maxDirtValue: 100
   dirtRange:
     min: 10
@@ -223,6 +224,10 @@ MonoBehaviour:
   cleanRange:
     min: 5
     max: 15
+  windowPlayer1: {fileID: 21300000, guid: d715963a50a626c41ac40d107112c3f6, type: 3}
+  windowPlayer2: {fileID: 21300000, guid: 0601a6e2ab401f04496ca9bbfce890b0, type: 3}
+  dirtyColor1: {r: 0.6784314, g: 0.37647063, b: 1, a: 0}
+  dirtyColor2: {r: 1, g: 0.37647063, b: 0.90196085, a: 0}
 --- !u!61 &3115016714817846023
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -266,5 +271,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.28, y: 1}
   m_EdgeRadius: 0

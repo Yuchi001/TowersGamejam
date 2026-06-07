@@ -37,11 +37,13 @@ namespace WindowPack
                 var spawnPointBase1 = playerOneWindowsSpawnPoint.position;
                 var pos1 = new Vector3(spawnPointBase1.x, spawnPointBase1.y - windowSize * index);
                 var window1 = Instantiate(windowPrefab, pos1, Quaternion.identity);
+                window1.Setup(0);
                 _windows[0].Add(window1);
                 
                 var spawnPointBase2 = playerTwoWindowsSpawnPoint.position;
                 var pos2 = new Vector3(spawnPointBase2.x, spawnPointBase2.y - windowSize * index);
                 var window2 = Instantiate(windowPrefab, pos2, Quaternion.identity);
+                window2.Setup(1);
                 _windows[1].Add(window2);
             });
         }
