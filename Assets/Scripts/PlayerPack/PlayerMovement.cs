@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using AudioPack;
 using BulletPack;
 using GameManagerPack;
 using TMPro;
@@ -48,6 +49,8 @@ namespace PlayerPack
             _currentAttackCount = attackStackCount;
             
             attackStackField.text = $"Paint: {_currentAttackCount}/{attackStackCount}";
+
+            enabled = false;
         }
 
         private void OnDestroy()
@@ -60,6 +63,8 @@ namespace PlayerPack
 
         private void OnUp(InputAction.CallbackContext context)
         {
+            if (!enabled) return;
+            
             var newPos = WindowManager.MoveUp(playerID);
             newPos.x += windowOffset;
             transform.position = newPos;
@@ -69,6 +74,8 @@ namespace PlayerPack
 
         private void OnDown(InputAction.CallbackContext context)
         {
+            if (!enabled) return;
+            
             var newPos = WindowManager.MoveDown(playerID);
             newPos.x += windowOffset;
             transform.position = newPos;
@@ -78,16 +85,20 @@ namespace PlayerPack
 
         private void OnAttack(InputAction.CallbackContext context)
         {
+            if (!enabled) return;
+            
             if (_currentAttackCount == 0) return;
 
             _currentAttackCount--;
-            attackStackField.text = $"Paint: {_currentAttackCount}/{attackStackCount}";
+            attackStackField.text = $"SHOTS:\n{_currentAttackCount}/{attackStackCount}";
             BulletEntity.SpawnBullet(bulletSpawnPos.position, playerColor, playerID == 0 ? 1 : -1);
             animator.SetTrigger("throw");
         }
 
         private void OnClean(InputAction.CallbackContext context)
         {
+            if (!enabled) return;
+            
             WindowManager.CleanWindow(playerID);
             animator.SetTrigger("clean");
         }
@@ -106,7 +117,15 @@ namespace PlayerPack
             _refreshTimer = 0;
             _currentAttackCount++;
 
-            attackStackField.text = $"Paint: {_currentAttackCount}/{attackStackCount}";
+            attackStackField.text = $"SHOTS:\n{_currentAttackCount}/{attackStackCount}";
+        }
+
+        public void Die()
+        {
+            AudioManager.PlaySound(ESoundType.Explosion);
+            var explosionPrefab = GameManager.GetPrefab<Transform>(PrefabNames.ExplosionPrefab);
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
 
         public void Init()

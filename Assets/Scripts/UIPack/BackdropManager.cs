@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 namespace UIPack
 {
-    public class BackdropManager : MonoBehaviour
+    public class BackdropManager : MonoBehaviour, IMainManager
     {
         [SerializeField] private float backdropDepthOfField;
         
@@ -23,13 +23,13 @@ namespace UIPack
         {
             Instance = this;
             _backdropPrefab = GameManager.GetPrefab<Backdrop>(PrefabNames.Backdrop);
-            GameManager.Volume.profile.TryGet(out _depthOfField);
-            _defaultDepthOfField = _depthOfField.focusDistance.value;
+            //GameManager.Volume.profile.TryGet(out _depthOfField);
+            //_defaultDepthOfField = _depthOfField.focusDistance.value;
         }
 
         public static void In(string uiKey)
         {
-            Instance._depthOfField.focusDistance.Override(Instance.backdropDepthOfField);
+            //Instance._depthOfField.focusDistance.Override(Instance.backdropDepthOfField);
             
             var spawnedBackdrop = Instantiate(Instance._backdropPrefab, UIManager.MainCanvas);
             spawnedBackdrop.transform.SetSiblingIndex(spawnedBackdrop.transform.GetSiblingIndex() - 1);
@@ -55,10 +55,10 @@ namespace UIPack
                 backdrop.Image.color = color;
             }).setIgnoreTimeScale(true).setOnComplete(() => Destroy(backdrop.gameObject));
 
-            var depthOfFieldValue = Instance._spawnedBackdrops.Any()
+            /*var depthOfFieldValue = Instance._spawnedBackdrops.Any()
                 ? Instance.backdropDepthOfField
                 : Instance._defaultDepthOfField;
-            Instance._depthOfField.focusDistance.Override(depthOfFieldValue);
+            Instance._depthOfField.focusDistance.Override(depthOfFieldValue);*/
         }
     }
 }

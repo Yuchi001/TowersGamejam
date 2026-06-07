@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using GameManagerPack;
+using TMPro;
 using UnityEngine;
 using Utils;
 
@@ -12,6 +14,8 @@ namespace WindowPack
         [SerializeField] private float windowSize;
         [SerializeField] private Transform playerOneWindowsSpawnPoint;
         [SerializeField] private Transform playerTwoWindowsSpawnPoint;
+        [SerializeField] private TextMeshProUGUI scoreField1;
+        [SerializeField] private TextMeshProUGUI scoreField2;
         
         private static WindowManager Instance { get; set; }
         public static bool HasInstance => Instance != null;
@@ -46,6 +50,14 @@ namespace WindowPack
                 window2.Setup(1);
                 _windows[1].Add(window2);
             });
+        }
+
+        public static int GetScore(int playerID) => Instance._windows[playerID].Sum(e => e.Points);
+
+        private void Update()
+        {
+            scoreField1.text = "SCORE\n" + GetScore(0).ToShortInt();
+            scoreField2.text = "SCORE\n" + GetScore(1).ToShortInt();
         }
 
         public static void CleanWindow(int playerId)

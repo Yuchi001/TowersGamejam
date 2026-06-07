@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AudioPack;
+using UIPack;
 using UnityEngine;
 using UnityEngine.Rendering;
 using MonoBehaviour = UnityEngine.MonoBehaviour;
@@ -10,6 +11,7 @@ namespace GameManagerPack
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private Volume volume;
+        [SerializeField] private GameController gameController;
 
         public static Volume Volume => Instance.volume;
         
@@ -37,14 +39,15 @@ namespace GameManagerPack
             
             var managers = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<IMainManager>();
             foreach (var mainManager in managers) mainManager.Init();
-            
-            StartGame();
+
+            AudioManager.SetTheme(ESoundType.MenuMusic);
+            UIManager.InstantiateUI<MenuUI>(PrefabNames.MenuUI);
         }
 
         public static void StartGame()
         {
             AudioManager.SetTheme(ESoundType.MainTheme);
-            
+            Instance.gameController.StartRun();
         }
        
         public static void PauseGame(object obj)

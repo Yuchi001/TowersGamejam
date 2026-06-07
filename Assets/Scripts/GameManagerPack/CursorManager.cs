@@ -37,6 +37,8 @@ namespace GameManagerPack
 
         public static void SetState(EState state)
         {
+            return;
+            
             Instance._currentState = Instance._stateDict[state];
             Instance.cursorImage.sprite = Instance._currentState.Sprite;
         }

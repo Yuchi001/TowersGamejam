@@ -7,5 +7,8 @@
         public static string DamageIndicatorHolder = "DamageIndicatorHolder";
         public static string WindowEntity = "WindowEntity";
         public static string BulletEntity = "BulletEntity";
+        public static string ExplosionPrefab = "ExplosionPrefab";
+        public static string EndMenuUI = "EndMenuUI";
+        public static string MenuUI = "MenuUI";
     }
 }

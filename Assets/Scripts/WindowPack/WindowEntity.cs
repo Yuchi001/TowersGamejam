@@ -34,6 +34,8 @@ namespace WindowPack
             dirtySpriteRenderer.color = color;
         }
 
+        public int Points => maxDirtValue - _dirtValue;
+
         public void Clean()
         {
             var clean = cleanRange.RandomInt();

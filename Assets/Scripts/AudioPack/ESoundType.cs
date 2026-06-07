@@ -9,5 +9,6 @@ namespace AudioPack
     MenuMusic = 5,
     cartoonsplash = 6,
     Clean = 7,
+    Explosion = 8,
     }
 }
