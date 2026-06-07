@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
 using AudioPack;
 using BulletPack;
 using GameManagerPack;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Utils;
 using WindowPack;
 
 namespace PlayerPack
 {
-    public class PlayerMovement : MonoBehaviour, IMainManager
+    public class PlayerMovement : MonoBehaviour
     {
         [Header("General")] 
         [SerializeField] private float windowOffset;
@@ -127,8 +126,9 @@ namespace PlayerPack
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
+        
 
-        public void Init()
+        private void OnEnable()
         {
             StartCoroutine(DelegateInit());
         }

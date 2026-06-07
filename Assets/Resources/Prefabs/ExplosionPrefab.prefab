@@ -119,4 +119,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e82f33e7ebe940ffb7bc33527f6fb1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitBeforeEnd: 2
+  waitBeforeEnd: 3

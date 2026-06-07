@@ -523,7 +523,7 @@ Transform:
   m_GameObject: {fileID: 170756887}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0, z: 0}
+  m_LocalPosition: {x: 0.3, y: 0.277, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2388,7 +2388,7 @@ Transform:
   m_GameObject: {fileID: 1601069227}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: -0.307, y: 0.264, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2748,6 +2748,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volume: {fileID: 0}
   gameController: {fileID: 1896557866}
+  togleList:
+  - {fileID: 1953797436}
+  - {fileID: 1666711661}
+  - {fileID: 1127150599}
+  - {fileID: 1926082479}
+  - {fileID: 331168751}
+  - {fileID: 2064903769}
+  - {fileID: 1655362661}
+  - {fileID: 616827272}
+  - {fileID: 1468924715}
 --- !u!4 &1686306040
 Transform:
   m_ObjectHideFlags: 0

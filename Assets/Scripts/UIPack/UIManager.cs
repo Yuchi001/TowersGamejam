@@ -99,6 +99,7 @@ namespace UIPack
 
             if (placement == EUIPlacement.CENTER)
             {
+                GameManager.ToggleList();
                 BackdropManager.In(key);
                 Instance._selectedUI = new UIRecord(key, EUIPlacement.CENTER, uiBase, closeStrategy);
             }
@@ -181,8 +182,12 @@ namespace UIPack
             }
             
             if (!record.Script.Open) return;
-            
-            if (record.Placement == EUIPlacement.CENTER) BackdropManager.Out(key);
+
+            if (record.Placement == EUIPlacement.CENTER)
+            {
+                GameManager.ToggleList();
+                BackdropManager.Out(key);
+            }
             
             record.CloseStrategy.Close(record.Script);
             if (removeFromList) RemoveUI(key);

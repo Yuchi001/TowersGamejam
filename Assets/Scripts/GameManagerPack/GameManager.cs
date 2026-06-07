@@ -12,6 +12,7 @@ namespace GameManagerPack
     {
         [SerializeField] private Volume volume;
         [SerializeField] private GameController gameController;
+        [SerializeField] private List<GameObject> togleList;
 
         public static Volume Volume => Instance.volume;
         
@@ -30,6 +31,9 @@ namespace GameManagerPack
 
         private void Awake()
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            
             if (Instance != this && Instance != null) Destroy(gameObject);
             else Instance = this;
 
@@ -48,6 +52,15 @@ namespace GameManagerPack
         {
             AudioManager.SetTheme(ESoundType.MainTheme);
             Instance.gameController.StartRun();
+        }
+        
+        public static void ToggleList()
+        {
+            foreach (var obj in Instance.togleList)
+            {
+                if (obj == null) continue;
+                obj.SetActive(!obj.activeSelf);
+            }
         }
        
         public static void PauseGame(object obj)
