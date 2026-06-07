@@ -10,5 +10,8 @@ namespace AudioPack
     cartoonsplash = 6,
     Clean = 7,
     Explosion = 8,
+    Clock8Sec = 9,
+    Win = 10,
+    cleanOrDie = 11,
     }
 }

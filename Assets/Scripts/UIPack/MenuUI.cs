@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using AudioPack;
 using GameManagerPack;
 using UIPack.Elements;
 using UIPack.NavigationPack;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace UIPack
 {
-    public class MenuUI : UIBase, INavigationUI
+    public class MenuUI : StaticUIBase, INavigationUI
     {
         [SerializeField] private List<TextUIButton> buttons;
         
@@ -18,6 +19,8 @@ namespace UIPack
             var buttonSection = new NavigationSection(this, buttons, NavigationSection.ENavigationOrientation.VERTICAL, NavigationSection.ENavigationOrientation.VERTICAL);
             NavigationManager = new NavigationManager(buttonSection);
             base.OnOpen(key);
+            
+            AudioManager.PlaySound(ESoundType.cleanOrDie);
         }
 
         public void OnExit() => Application.Quit();

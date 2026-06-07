@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using AudioPack;
+using GameManagerPack;
 using TMPro;
 using UIPack.Elements;
 using UIPack.NavigationPack;
@@ -10,7 +12,7 @@ using WindowPack;
 
 namespace UIPack
 {
-    public class EndMenuUI : UIBase, INavigationUI
+    public class EndMenuUI : StaticUIBase, INavigationUI
     {
         [SerializeField] private TextMeshProUGUI winField;
         [SerializeField] private TextMeshProUGUI scoreField;
@@ -20,6 +22,8 @@ namespace UIPack
         
         public override void OnOpen(string key)
         {
+            GameManager.ToggleConfetti(true);
+            
             var buttonSection = new NavigationSection(this, buttons, NavigationSection.ENavigationOrientation.VERTICAL, NavigationSection.ENavigationOrientation.VERTICAL);
             NavigationManager = new NavigationManager(buttonSection);
 
@@ -30,6 +34,9 @@ namespace UIPack
             scoreField.text = $"SCORE:\n{maxScore}";
             
             base.OnOpen(key);
+            
+            AudioManager.StopTheme();
+            AudioManager.PlaySound(ESoundType.Win);
         }
 
         public void OnRestart() => SceneManager.LoadScene(0);

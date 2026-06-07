@@ -32,7 +32,7 @@ namespace AudioPack
             _sfxPool = PoolHelper.CreatePool(this, sfxPrefab, false);
 
             foreach (ESoundType soundType in Enum.GetValues(typeof(ESoundType)))
-                _soundEffectTimes.Add(soundType, Time.time);
+                _soundEffectTimes.Add(soundType, -999999);
         }
 
         #endregion

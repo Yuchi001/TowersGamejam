@@ -13,6 +13,7 @@ namespace GameManagerPack
         [SerializeField] private Volume volume;
         [SerializeField] private GameController gameController;
         [SerializeField] private List<GameObject> togleList;
+        [SerializeField] private ParticleSystem confetti;
 
         public static Volume Volume => Instance.volume;
         
@@ -46,6 +47,12 @@ namespace GameManagerPack
 
             AudioManager.SetTheme(ESoundType.MenuMusic);
             UIManager.InstantiateUI<MenuUI>(PrefabNames.MenuUI);
+        }
+
+        public static void ToggleConfetti(bool enable)
+        {
+            if (enable) Instance.confetti.Play();
+            else Instance.confetti.Stop();
         }
 
         public static void StartGame()

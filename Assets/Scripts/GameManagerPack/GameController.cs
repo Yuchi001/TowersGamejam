@@ -1,4 +1,5 @@
 ﻿using System;
+using AudioPack;
 using PlayerPack;
 using TMPro;
 using UnityEngine;
@@ -17,6 +18,8 @@ namespace GameManagerPack
         private float _currentTimer;
         private bool _ready = false;
 
+        private bool _spawnedTimer = false;
+
         public void StartRun()
         {
             _currentTimer = 0;
@@ -32,6 +35,13 @@ namespace GameManagerPack
 
             _currentTimer += Time.deltaTime;
             timerText.text = (matchLength - _currentTimer).ToShortTime();
+            if (matchLength - _currentTimer <= 1f) timerText.text = "Time's Up!";
+
+            if (!_spawnedTimer && matchLength - _currentTimer <= 8)
+            {
+                AudioManager.PlaySound(ESoundType.Clock8Sec);
+                _spawnedTimer = true;
+            }
 
             if (_currentTimer < matchLength) return;
 
