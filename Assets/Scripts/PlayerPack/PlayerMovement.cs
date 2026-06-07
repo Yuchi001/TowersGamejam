@@ -36,8 +36,8 @@ namespace PlayerPack
         private int _currentAttackCount;
         private float _refreshTimer = 0;
 
-        public float _goldenBucketTimer = 0;
-        public float _goldenSpongeTimer = 0;
+        private float _goldenBucketTimer = 0;
+        private float _goldenSpongeTimer = 0;
         
 
         private void Awake()
@@ -54,7 +54,7 @@ namespace PlayerPack
 
             _currentAttackCount = attackStackCount;
             
-            attackStackField.text = $"SHOTS:\n{_currentAttackCount}/{attackStackCount}";
+            attackStackField.text = $"{_currentAttackCount:00}/{attackStackCount}";
 
             enabled = false;
         }
@@ -98,7 +98,7 @@ namespace PlayerPack
             if (_currentAttackCount == 0) return;
 
             _currentAttackCount--;
-            attackStackField.text = $"SHOTS:\n{_currentAttackCount}/{attackStackCount}";
+            attackStackField.text = $"{_currentAttackCount:00}/{attackStackCount}";
             BulletEntity.SpawnBullet(bulletSpawnPos.position, playerColor, playerID == 0 ? 1 : -1);
             animator.SetTrigger("throw");
         }
@@ -151,7 +151,7 @@ namespace PlayerPack
             _refreshTimer = 0;
             _currentAttackCount++;
 
-            attackStackField.text = $"SHOTS:\n{_currentAttackCount}/{attackStackCount}";
+            attackStackField.text = $"{_currentAttackCount:00}/{attackStackCount}";
         }
 
         public void Die()

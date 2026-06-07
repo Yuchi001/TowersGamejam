@@ -57,8 +57,8 @@ namespace WindowPack
 
         private void Update()
         {
-            scoreField1.text = "SCORE\n" + GetScore(0).ToShortInt();
-            scoreField2.text = "SCORE\n" + GetScore(1).ToShortInt();
+            scoreField1.text = $"|{GetScore(0):0000}|P";
+            scoreField2.text = $"|{GetScore(1):0000}|P";
         }
 
         public static void CleanWindow(int playerId, bool full)
