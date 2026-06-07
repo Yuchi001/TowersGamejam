@@ -38,7 +38,7 @@ namespace WindowPack
 
         public void Clean(bool full = false)
         {
-            var clean = full ? cleanRange.RandomInt() : _dirtValue;
+            var clean = !full ? cleanRange.RandomInt() : _dirtValue;
             _dirtValue -= clean;
             _dirtValue = Mathf.Max(0, _dirtValue);
             

@@ -222,8 +222,8 @@ MonoBehaviour:
     min: 10
     max: 25
   cleanRange:
-    min: 5
-    max: 15
+    min: 10
+    max: 25
   windowPlayer1: {fileID: 21300000, guid: d715963a50a626c41ac40d107112c3f6, type: 3}
   windowPlayer2: {fileID: 21300000, guid: 0601a6e2ab401f04496ca9bbfce890b0, type: 3}
   dirtyColor1: {r: 0, g: 0.4392157, b: 0.92156863, a: 0}
