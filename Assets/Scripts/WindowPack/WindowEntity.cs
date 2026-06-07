@@ -36,9 +36,9 @@ namespace WindowPack
 
         public int Points => maxDirtValue - _dirtValue;
 
-        public void Clean()
+        public void Clean(bool full = false)
         {
-            var clean = cleanRange.RandomInt();
+            var clean = full ? cleanRange.RandomInt() : _dirtValue;
             _dirtValue -= clean;
             _dirtValue = Mathf.Max(0, _dirtValue);
             

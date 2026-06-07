@@ -10,5 +10,6 @@
         public static string ExplosionPrefab = "ExplosionPrefab";
         public static string EndMenuUI = "EndMenuUI";
         public static string MenuUI = "MenuUI";
+        public static string Robot = "Robot";
     }
 }

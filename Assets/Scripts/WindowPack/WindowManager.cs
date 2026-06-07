@@ -53,6 +53,7 @@ namespace WindowPack
         }
 
         public static int GetScore(int playerID) => Instance._windows[playerID].Sum(e => e.Points);
+        public static List<WindowEntity> GetWindows(int playerID) => Instance._windows[playerID];
 
         private void Update()
         {
@@ -60,11 +61,11 @@ namespace WindowPack
             scoreField2.text = "SCORE\n" + GetScore(1).ToShortInt();
         }
 
-        public static void CleanWindow(int playerId)
+        public static void CleanWindow(int playerId, bool full)
         {
             var pos = Instance._playerPos[playerId];
             var window = Instance._windows[playerId][pos];
-            window.Clean();
+            window.Clean(full);
         }
 
         public static Vector3 MoveUp(int playerId)

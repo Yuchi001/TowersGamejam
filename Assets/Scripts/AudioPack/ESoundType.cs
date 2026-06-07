@@ -17,5 +17,11 @@ namespace AudioPack
     morebolets = 13,
     speedpower_low = 14,
     goldensponge = 15,
+    sponge = 16,
+    goldenBucket = 17,
+    bucket = 18,
+    Mirror = 19,
+    Wood = 20,
+    Portal = 21,
     }
 }

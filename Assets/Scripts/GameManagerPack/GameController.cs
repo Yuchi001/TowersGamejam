@@ -17,11 +17,26 @@ namespace GameManagerPack
         [SerializeField] private PlayerMovement player2;
         [SerializeField] private float waitBeforePlayerDeath = 2;
 
+        public static PlayerMovement Player1 => Instance.player1;
+        public static PlayerMovement Player2 => Instance.player2;
+
         private float _currentTimer;
         private bool _ready = false;
 
         private bool _spawnedTimer = false;
         private bool _spawnedTimesUp = false;
+
+        public static float MatchLength => Instance.matchLength;
+        
+        private static GameController Instance { get; set; }
+        public static bool HasInstance => Instance != null;
+        public static bool Active => Instance._ready;
+
+        private void Awake()
+        {
+            if (Instance != null && Instance != this) Destroy(gameObject);
+            else Instance = this;
+        }
 
         public void StartRun()
         {

@@ -6,6 +6,7 @@ using GameManagerPack;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using WindowPack;
 
 namespace PlayerPack
@@ -20,6 +21,8 @@ namespace PlayerPack
         [SerializeField] private int attackStackCount;
         [SerializeField] private float stackRefreshRate;
         [SerializeField] private TextMeshProUGUI attackStackField;
+        [SerializeField] private Image goldenBucketField;
+        [SerializeField] private Image goldenSpongeField;
         [SerializeField] private LineRenderer lineRenderer;
         [SerializeField] private Animator animator;
         
@@ -33,6 +36,10 @@ namespace PlayerPack
         private int _currentAttackCount;
         private float _refreshTimer = 0;
 
+        public float _goldenBucketTimer = 0;
+        public float _goldenSpongeTimer = 0;
+        
+
         private void Awake()
         {
             moveUpAction.action.Enable();
@@ -40,14 +47,14 @@ namespace PlayerPack
             attackAction.action.Enable();
             cleanAction.action.Enable();
 
-            moveUpAction.action.started += OnUp;
-            moveDownAction.action.started += OnDown;
-            attackAction.action.started += OnAttack;
-            cleanAction.action.started += OnClean;
+            moveUpAction.action.performed += OnUp;
+            moveDownAction.action.performed += OnDown;
+            attackAction.action.performed += OnAttack;
+            cleanAction.action.performed += OnClean;
 
             _currentAttackCount = attackStackCount;
             
-            attackStackField.text = $"Paint: {_currentAttackCount}/{attackStackCount}";
+            attackStackField.text = $"SHOTS:\n{_currentAttackCount}/{attackStackCount}";
 
             enabled = false;
         }
@@ -59,6 +66,8 @@ namespace PlayerPack
             attackAction.action.performed -= OnAttack;
             cleanAction.action.performed -= OnClean;
         }
+
+        public void AddBullets(int bullets) => _currentAttackCount += bullets;
 
         private void OnUp(InputAction.CallbackContext context)
         {
@@ -98,20 +107,46 @@ namespace PlayerPack
         {
             if (!enabled) return;
             
-            WindowManager.CleanWindow(playerID);
+            WindowManager.CleanWindow(playerID, _goldenSpongeTimer > 0.01f);
             animator.SetTrigger("clean");
         }
 
+        public void SetGoldenBucketTimer() => _goldenBucketTimer = 5f;
+        public void SetGoldenSpongeTimer() => _goldenSpongeTimer = 5f;
+
         private void Update()
         {
-            if (_currentAttackCount == attackStackCount)
+            ManageAttack();
+            ManageGoldenBucket();
+            ManageGoldenSponge();
+        }
+
+        private void ManageGoldenSponge()
+        {
+            goldenSpongeField.fillAmount = _goldenSpongeTimer / 5f;
+            if (_goldenSpongeTimer <= 0) return;
+
+            _goldenSpongeTimer -= Time.deltaTime;
+        }
+
+        private void ManageGoldenBucket()
+        {
+            goldenBucketField.fillAmount = _goldenBucketTimer / 5f;
+            if (_goldenBucketTimer <= 0) return;
+
+            _goldenBucketTimer -= Time.deltaTime;
+        }
+
+        private void ManageAttack()
+        {
+            if (_currentAttackCount >= attackStackCount)
             {
                 _refreshTimer = 0;
                 return;
             }
 
             _refreshTimer += Time.deltaTime;
-            if (_refreshTimer < 1f / stackRefreshRate) return;
+            if (_refreshTimer < 1f / stackRefreshRate && _goldenBucketTimer <= 0.01f) return;
 
             _refreshTimer = 0;
             _currentAttackCount++;
