@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using AudioPack;
+using CurtainsPack;
 using GameManagerPack;
 using TMPro;
 using UIPack.Elements;
@@ -22,6 +23,8 @@ namespace UIPack
         
         public override void OnOpen(string key)
         {
+            CurtainsManager.In();
+            
             GameManager.ToggleConfetti(true);
             
             var buttonSection = new NavigationSection(this, buttons, NavigationSection.ENavigationOrientation.VERTICAL, NavigationSection.ENavigationOrientation.VERTICAL);

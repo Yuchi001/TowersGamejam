@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AudioPack;
+using CurtainsPack;
 using UIPack;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -57,6 +58,7 @@ namespace GameManagerPack
 
         public static void StartGame()
         {
+            CurtainsManager.Out();
             AudioManager.SetTheme(ESoundType.MainTheme);
             Instance.gameController.StartRun();
         }
